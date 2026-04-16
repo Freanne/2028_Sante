@@ -9,6 +9,7 @@
     <?php
         echo "Hello World";
         echo "C'est moi Amani";
+        echo "Je suis étudiant";
     ?>
 </body>
 </html>
