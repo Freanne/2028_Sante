@@ -8,6 +8,7 @@
 <body>
     <?php
         echo "Hello World";
+        echo "C'est moi Amani";
     ?>
 </body>
 </html>
