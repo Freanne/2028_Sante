@@ -17,12 +17,12 @@
                 <li><a href="#equipe">Qui sommes-nous ?</a></li>
             </ul>
         </nav>
-        <a href="#inscription" class="btn-cta">Réserver le dispositif</a>
+        <a href="#inscription" class="btn-cta">Réserver la montre</a>
     </header>
 
     <main>
         <section class="hero">
-            <h1>CONNECTEZ-VOUS À VOTRE SANTÉ MESUREZ VOTRE SCORE MET</h1>
+            <h1>CONNECTEZ-VOUS À VOTRE SANTÉ </h1>
             <p>Un objet connecté innovant développé par les étudiants de Polytech pour évaluer et améliorer vos habitudes de vie.</p>
         </section>
 
@@ -45,13 +45,19 @@
 
         <section id="equipe" class="content-section text-center">
             <h2>L'Équipe</h2>
-            <p>Nous sommes étudiants en filière Système Embarqué et Capteurs (SEA) à Polytech Annecy-Chambéry.</p>
+            <p>Nous sommes étudiants en filière Système Embarqué, Automatisation et Capteurs (SEA) à Polytech Annecy-Chambéry.</p>
             <ul class="team-list">
                 <li>KODAD Amani</li>
                 <li>AKOTEGNON Anne-Marie</li>
                 <li>MENO Viviane</li>
                 <li>COURRET-BONNEFOND Malo</li>
             </ul>
+        </section>
+
+        <section id="inscription" class="content-section text-center">
+            <h2>Réserver la montre</h2>
+            <p>Intéressé(e) par une démonstration ? Écrivez-nous et nous reviendrons vers vous rapidement.</p>
+            <a href="mailto:contact@polytech-annecy.fr" class="btn-cta">Nous contacter</a>
         </section>
     </main>
 
