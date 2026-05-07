@@ -1,12 +1,5 @@
+from assets.css import :assets
 
-/* Variables de couleurs basées sur Santé.fr */
-:root {
-    --primary-blue: #2A365D; /* Version mise à jour */
-    --accent-emerald: #10B981;
-    --light-green: #D1FAE5;
-    --text-dark: #333333;
-    --text-light: #FFFFFF;
-}
 
 /* Reset & Base */
 * {
@@ -16,10 +9,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-    background-color: #F8FAFC;
+body { background-color: #F8FAFC;
     color: var(--text-dark);
-    line-height: 1.6;
+    line-height: 1.6mooth;
     scroll-behavior: smooth;
 }
 
