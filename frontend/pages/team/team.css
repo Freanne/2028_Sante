@@ -1,0 +1,53 @@
+.page-hero {
+	background-color: var(--primary-blue);
+	color: var(--text-light);
+	padding: 60px 20px;
+	text-align: center;
+}
+
+.page-hero h1 {
+	font-size: 2.2rem;
+	margin-bottom: 10px;
+}
+
+.team-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 30px;
+	max-width: 900px;
+	margin: 60px auto;
+	padding: 0 20px;
+}
+
+.member-card {
+	background: #fff;
+	border-radius: 12px;
+	padding: 30px 20px;
+	text-align: center;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.member-avatar {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	background-color: var(--primary-blue);
+	color: var(--text-light);
+	font-size: 1.4rem;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 15px;
+}
+
+.member-card h3 {
+	color: var(--primary-blue);
+	margin-bottom: 8px;
+	font-size: 1rem;
+}
+
+.member-card p {
+	font-size: 0.9rem;
+	color: #666;
+}

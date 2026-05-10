@@ -1,0 +1,50 @@
+.page-hero {
+	background-color: var(--primary-blue);
+	color: var(--text-light);
+	padding: 60px 20px;
+	text-align: center;
+}
+
+.page-hero h1 {
+	font-size: 2.2rem;
+	margin-bottom: 10px;
+}
+
+.contact-container {
+	max-width: 600px;
+	margin: 50px auto;
+	padding: 0 20px;
+}
+
+.contact-form .form-group {
+	margin-bottom: 20px;
+}
+
+.contact-form label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 6px;
+	color: var(--primary-blue);
+}
+
+.contact-form input,
+.contact-form textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #D1D5DB;
+	border-radius: 6px;
+	font-size: 1rem;
+	transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+	outline: none;
+	border-color: var(--accent-emerald);
+}
+
+.contact-form .btn-cta {
+	width: 100%;
+	padding: 14px;
+	font-size: 1rem;
+}

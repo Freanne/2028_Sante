@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Connexion | Projet Anti-Sédentarité</title>
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../layouts/header/header.css">
+	<link rel="stylesheet" href="../../layouts/footer/footer.css">
+	<link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+	<header>
+		<a class="logo" href="../../index.html">AntiSéd 2028</a>
+		<nav>
+			<ul>
+				<li><a href="../../index.html">Accueil</a></li>
+				<li><a href="../device/device.html">Dispositif</a></li>
+				<li><a href="../team/team.html">Équipe</a></li>
+				<li><a href="../contact/contact.html">Contact</a></li>
+				<li>
+					<a href="../espace_sponsor/data/data.html">Espace Sponsor ▾</a>
+					<div class="dropdown">
+						<a href="../espace_sponsor/data/data.html">Données</a>
+						<a href="../espace_sponsor/monitoring/monitoring.html">Monitoring</a>
+						<a href="../espace_sponsor/feedback/feedback.html">Feedback</a>
+					</div>
+				</li>
+				<li>
+					<a href="login.html">Compte ▾</a>
+					<div class="dropdown">
+						<a href="login.html">Connexion</a>
+						<a href="../register/register.html">Inscription</a>
+						<a href="../reset_password/reset_password.html">Réinitialisation</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main class="auth-main">
+		<div class="auth-card">
+			<h1>Connexion</h1>
+			<p class="auth-subtitle">Accédez à votre espace personnel</p>
+
+			<form action="../../backend/authentification/login.php" method="POST">
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" placeholder="votre@email.com" required>
+				</div>
+				<div class="form-group">
+					<label for="password">Mot de passe</label>
+					<input type="password" id="password" name="password" placeholder="••••••••" required>
+				</div>
+				<button type="submit" class="btn-cta btn-full">Se connecter</button>
+			</form>
+
+			<div class="auth-links">
+				<a href="../reset_password/reset_password.html">Mot de passe oublié ?</a>
+				<span>·</span>
+				<a href="../register/register.html">Créer un compte</a>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<p>&copy; 2028 - Projet Cycle Ingénieur Polytech Annecy-Chambéry</p>
+	</footer>
+
+</body>
+</html>
