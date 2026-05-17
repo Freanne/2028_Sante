@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE php>
+<php lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<?php include __DIR__ . '/../../layouts/header/header.html'; ?>
+	<?php include __DIR__ . '/../../layouts/header/header.php'; ?>
 
 	<main>
 		<section class="page-hero">
@@ -24,7 +24,7 @@
 		</section>
 	</main>
 
-	<?php include __DIR__ . '/../../layouts/footer/footer.html'; ?>
+	<?php include __DIR__ . '/../../layouts/footer/footer.php'; ?>
 
 </body>
-</html>
+</php>
