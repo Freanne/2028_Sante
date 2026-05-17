@@ -1,44 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE php>
+<php lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Projet Anti-Sédentarité | Polytech Annecy-Chambéry</title>
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/styles/main.css">
 	<link rel="stylesheet" href="layouts/header/header.css">
 	<link rel="stylesheet" href="layouts/footer/footer.css">
 	<link rel="stylesheet" href="pages/home/home.css">
 </head>
 <body>
 
-	<header>
-		<a class="logo" href="index.html">AntiSéd 2028</a>
-		<nav>
-			<ul>
-				<li><a href="index.html">Accueil</a></li>
-				<li><a href="pages/device/device.html">Dispositif</a></li>
-				<li><a href="pages/team/team.html">Équipe</a></li>
-				<li><a href="pages/contact/contact.html">Contact</a></li>
-				<li>
-					<a href="pages/espace_sponsor/data/data.html">Espace Sponsor ▾</a>
-					<div class="dropdown">
-						<a href="pages/espace_sponsor/data/data.html">Données</a>
-						<a href="pages/espace_sponsor/monitoring/monitoring.html">Monitoring</a>
-						<a href="pages/espace_sponsor/feedback/feedback.html">Feedback</a>
-					</div>
-				</li>
-				<li>
-					<a href="pages/login/login.html">Compte ▾</a>
-					<div class="dropdown">
-						<a href="pages/login/login.html">Connexion</a>
-						<a href="pages/register/register.html">Inscription</a>
-						<a href="pages/reset_password/reset_password.html">Réinitialisation</a>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</header>
 
+
+<?php include __DIR__ . '/layouts/header/header.php'; ?>
 	<main>
 		<section class="hero">
 			<h1>CONNECTEZ-VOUS À VOTRE SANTÉ</h1>
@@ -80,9 +55,11 @@
 		</section>
 	</main>
 
-	<footer>
+	<!-- <footer>
 		<p>&copy; 2028 - Projet Cycle Ingénieur Polytech Annecy-Chambéry</p>
-	</footer>
+	</footer> -->
+
+	<?php include __DIR__ . '/../../layouts/footer/footer.php'; ?>
 
 </body>
-</html>
+</php>

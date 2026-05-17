@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE php>
+<php lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Accueil | Projet Anti-Sédentarité</title>
-	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/styles/main.css">
 	<link rel="stylesheet" href="../../layouts/header/header.css">
 	<link rel="stylesheet" href="../../layouts/footer/footer.css">
 	<link rel="stylesheet" href="home.css">
 </head>
 <body>
 
-	<?php include __DIR__ . '/../../layouts/header/header.html'; ?>
+	<?php include __DIR__ . '/../../layouts/header/header.php'; ?>
 
 	<main>
 		<section class="hero">
@@ -41,7 +41,7 @@
 		</section>
 	</main>
 
-	<?php include __DIR__ . '/../../layouts/footer/footer.html'; ?>
+	<?php include __DIR__ . '/../../layouts/footer/footer.php'; ?>
 
 </body>
-</html>
+</php>

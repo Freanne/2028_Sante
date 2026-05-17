@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE php>
+<php lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Données | Espace Sponsor</title>
-	<link rel="stylesheet" href="../../../assets/css/main.css">
+	<link rel="stylesheet" href="../../../assets/styles/main.css">
 	<link rel="stylesheet" href="../../../layouts/header/header.css">
 	<link rel="stylesheet" href="../../../layouts/footer/footer.css">
 	<link rel="stylesheet" href="data.css">
@@ -12,27 +12,27 @@
 <body>
 
 	<header>
-		<a class="logo" href="../../../index.html">AntiSéd 2028</a>
+		<a class="logo" href="../../../index.php">AntiSéd 2028</a>
 		<nav>
 			<ul>
-				<li><a href="../../../index.html">Accueil</a></li>
-				<li><a href="../../device/device.html">Dispositif</a></li>
-				<li><a href="../../team/team.html">Équipe</a></li>
-				<li><a href="../../contact/contact.html">Contact</a></li>
+				<li><a href="../../../index.php">Accueil</a></li>
+				<li><a href="../../device/device.php">Dispositif</a></li>
+				<li><a href="../../team/team.php">Équipe</a></li>
+				<li><a href="../../contact/contact.php">Contact</a></li>
 				<li>
-					<a href="data.html">Espace Sponsor ▾</a>
+					<a href="data.php">Espace Sponsor ▾</a>
 					<div class="dropdown">
-						<a href="data.html">Données</a>
-						<a href="../monitoring/monitoring.html">Monitoring</a>
-						<a href="../feedback/feedback.html">Feedback</a>
+						<a href="data.php">Données</a>
+						<a href="../monitoring/monitoring.php">Monitoring</a>
+						<a href="../feedback/feedback.php">Feedback</a>
 					</div>
 				</li>
 				<li>
-					<a href="../../login/login.html">Compte ▾</a>
+					<a href="../../login/login.php">Compte ▾</a>
 					<div class="dropdown">
-						<a href="../../login/login.html">Connexion</a>
-						<a href="../../register/register.html">Inscription</a>
-						<a href="../../reset_password/reset_password.html">Réinitialisation</a>
+						<a href="../../login/login.php">Connexion</a>
+						<a href="../../register/register.php">Inscription</a>
+						<a href="../../reset_password/reset_password.php">Réinitialisation</a>
 					</div>
 				</li>
 			</ul>
@@ -55,4 +55,4 @@
 	</footer>
 
 </body>
-</html>
+</php>
