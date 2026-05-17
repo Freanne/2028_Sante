@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Données | Espace Sponsor</title>
-	<link rel="stylesheet" href="../../../assets/styles/main.css">
+	<link rel="stylesheet" href="/APP2028/2028_Sante/frontend/assets/styles/main.css">
 	<link rel="stylesheet" href="../../../layouts/header/header.css">
 	<link rel="stylesheet" href="../../../layouts/footer/footer.css">
 	<link rel="stylesheet" href="data.css">
@@ -21,38 +21,22 @@
 				<li><a href="../../contact/contact.php">Contact</a></li>
 				<li>
 					<a href="data.php">Espace Sponsor ▾</a>
-					<div class="dropdown">
-						<a href="data.php">Données</a>
-						<a href="../monitoring/monitoring.php">Monitoring</a>
-						<a href="../feedback/feedback.php">Feedback</a>
-					</div>
-				</li>
-				<li>
-					<a href="../../login/login.php">Compte ▾</a>
-					<div class="dropdown">
-						<a href="../../login/login.php">Connexion</a>
-						<a href="../../register/register.php">Inscription</a>
-						<a href="../../reset_password/reset_password.php">Réinitialisation</a>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</header>
-
+					<?php
+					http_response_code(404);
+					?>
+					<!DOCTYPE html>
+					<html lang="fr">
+					<head>
+						<meta charset="UTF-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						<title>Page supprimée</title>
+					</head>
+					<body>
+						<main>
+							<h1>Page supprimée</h1>
+							<p>Cette page n'est plus disponible.</p>
+							<a href="/APP2028/2028_Sante/frontend/index.php">Retour à l'accueil</a>
+						</main>
+					</body>
+					</html>
 	<main>
-		<section class="page-hero">
-			<h1>Données Sponsor</h1>
-			<p>Base minimale pour afficher les indicateurs du projet.</p>
-		</section>
-
-		<section class="content-block">
-			<p>Aucune donnée active pour le moment.</p>
-		</section>
-	</main>
-
-	<footer>
-		<p>&copy; 2028 - Projet Cycle Ingénieur Polytech Annecy-Chambéry</p>
-	</footer>
-
-</body>
-</php>

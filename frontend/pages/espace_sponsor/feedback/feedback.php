@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Feedback | Espace Sponsor</title>
-	<link rel="stylesheet" href="../../../assets/styles/main.css">
+	<link rel="stylesheet" href="/APP2028/2028_Sante/frontend/assets/styles/main.css">
 	<link rel="stylesheet" href="../../../layouts/header/header.css">
 	<link rel="stylesheet" href="../../../layouts/footer/footer.css">
 	<link rel="stylesheet" href="feedback.css">

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="santee.css">
-    <link rel="stylesheet" href="../../assets/styles/main.css">
-	<link rel="stylesheet" href="../../layouts/header/header.css">
-	<link rel="stylesheet" href="../../layouts/footer/footer.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/assets/styles/main.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/header/header.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/footer/footer.css">
 	<link rel="stylesheet" href="home.css">
 </head>
 <body>
