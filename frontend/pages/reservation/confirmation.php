@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Réservation Confirmée</title>
-    <link rel="stylesheet" href="sante.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/pages/reservation/reservation.css">
     <style>
         .success-box {
             background: white;

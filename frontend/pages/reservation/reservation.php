@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="santee.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/pages/reservation/reservation.css">
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/assets/styles/main.css">
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/header/header.css">
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/footer/footer.css">
