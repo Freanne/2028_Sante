@@ -9,11 +9,15 @@
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/assets/styles/main.css">
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/header/header.css">
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/footer/footer.css">
-	<link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/pages/home/home.css">
 </head>
 <body class="reservation-body">
 
 <?php include __DIR__ . '/../../layouts/header/header.php'; ?>
+    <section class="hero">
+        <h1>CONNECTEZ-VOUS À VOTRE SANTÉ</h1>
+        <p>Un objet connecté innovant développé par les étudiants de Polytech pour évaluer et améliorer vos habitudes de vie.</p>
+    </section>
     <?php
     // Temporary: enable error display to surface issues (remove on production)
     ini_set('display_errors', 1);
@@ -80,11 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
     <main class="reservation-page">
         <div class="reservation-container">
 
-            <!-- Hero (same as other pages) -->
-            <section class="hero">
-                <h1>RÉSERVEZ VOTRE DISPOSITIF</h1>
-                <p>Choisissez une semaine disponible pour emprunter la montre de diagnostic.</p>
-            </section>
+            <!-- Hero moved above the reservation container to match other pages -->
            
             <!-- Auth removed: reservation page is reservation-only; use /pages/reservation/login.php to authenticate -->
 
@@ -169,6 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
             <section class="calendar-section">
     <h2>Disponibilités</h2>
     <p class="calendar-subtitle">Sélectionnez votre semaine de prêt (7 jours à partir du lundi)</p>
+            <div class="calendar-wrapper">
     
     <?php
     // 1. Détection dynamique du mois et de l'année via l'URL (par défaut : mois et année actuels)
@@ -225,11 +226,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
         <a href="?month=<?= $next_month ?>&year=<?= $next_year ?>" class="btn btn-icon" id="next-month">→</a>
     </div>
 
-    <div class="calendar">
+        <div class="calendar">
         <div class="calendar-header">
             <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
         </div>
-        
+
         <div class="calendar-grid">
             <?php
             // Cases vides pour le début du mois
@@ -262,6 +263,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
         <span class="legend-item"><span class="dot available"></span> Disponible</span>
         <span class="legend-item"><span class="dot reserved"></span> Réservé</span>
         <span class="legend-item"><span class="dot selected"></span> Sélectionné</span>
+    </div>
     </div>
 
     <div class="reservation-summary" id="reservation-summary" style="display: none;">

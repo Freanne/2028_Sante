@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_btn'])) {
                 </div>
                 <button type="submit" name="login_btn" class="btn btn-primary btn-full">Se connecter</button>
             </form>
-            <p class="mt-10 text-center">Pas de compte ? <a href="/APP2028/2028_Sante/authentification/register.php">Inscrivez-vous</a></p>
+            <p class="mt-10 text-center">Pas de compte ? <a href="/APP2028/2028_Sante/frontend/auth/register.php">Inscrivez-vous</a></p>
         </section>
     </main>
 
