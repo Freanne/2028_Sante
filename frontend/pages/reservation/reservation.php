@@ -1,6 +1,6 @@
 
-<!DOCTYPE php>
-<php lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,72 +11,29 @@
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/footer/footer.css">
 	<link rel="stylesheet" href="home.css">
 </head>
-<body>
+<body class="reservation-body">
 
 <?php include __DIR__ . '/../../layouts/header/header.php'; ?>
     <?php
-session_start();
+    // Temporary: enable error display to surface issues (remove on production)
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-$conn = mysqli_connect('localhost', 'root', '', '2028_sante');
+    // session is started in the header include; do not call session_start() again here
 
-if (!$conn) {
-    die("Erreur de connexion : " . mysqli_connect_error());
-}
+    $conn = mysqli_connect('localhost', 'root', '', '2028_sante');
 
-mysqli_set_charset($conn, "utf8mb4");
-
-$msg = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // CAS INSCRIPTION
-    if (isset($_POST['register_btn'])) {
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-        $checkEmail = mysqli_query($conn, "SELECT id FROM users WHERE email = '$email'");
-        
-        if (mysqli_num_rows($checkEmail) > 0) {
-            $msg = "<p style='color:red; text-align:center;'>Cet email est déjà utilisé.</p>";
-        } else {
-            $sql = "INSERT INTO users (full_name, email, password_hash) VALUES (?, ?, ?)";
-            $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $password);
-            
-            if (mysqli_stmt_execute($stmt)) {
-                $msg = "<p style='color:green; text-align:center;'>Compte créé ! Connectez-vous.</p>";
-            } else {
-                $msg = "<p style='color:red; text-align:center;'>Erreur SQL : " . mysqli_error($conn) . "</p>";
-            }
-            mysqli_stmt_close($stmt);
-        }
+    if (!$conn) {
+        die("Erreur de connexion : " . mysqli_connect_error());
     }
 
-    // CAS CONNEXION
-    if (isset($_POST['login_btn'])) {
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = $_POST['password'];
+    mysqli_set_charset($conn, "utf8mb4");
 
-        $sql = "SELECT * FROM users WHERE email = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $user = mysqli_fetch_assoc($result);
+    $msg = "";
 
-        if ($user && password_verify($password, $user['password_hash'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['full_name'];
-            $msg = "<p style='color:green; text-align:center;'>Bienvenue " . htmlspecialchars($user['full_name']) . " !</p>";
-        } else {
-            $msg = "<p style='color:red; text-align:center;'>Identifiants invalides.</p>";
-        }
-        mysqli_stmt_close($stmt);
-    }
-
-    // CAS CONFIRMATION DE RÉSERVATION
-    if (isset($_POST['confirm_booking'])) {
+// CAS CONFIRMATION DE RÉSERVATION
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
         if (!isset($_SESSION['user_id'])) {
             $msg = "<p style='color:red; text-align:center;'>Erreur : Vous devez être connecté pour réserver.</p>";
         } else {
@@ -118,48 +75,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-}
 ?>
 
     <main class="reservation-page">
         <div class="reservation-container">
-           
-            <section class="auth-section">
-                <div class="tabs">
-                    <button class="tab active" data-tab="login">Connexion</button>
-                    <button class="tab" data-tab="register">Inscription</button>
-                </div>
 
-                <?= $msg; // Affichage des messages ?>
-
-                <form method="POST" id="login-form" class="auth-form active">
-                    <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" name="email" id="login-email" required placeholder="vous@gmail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Mot de passe</label>
-                        <input type="password" name="password" id="login-password" required placeholder="••••••••">
-                    </div>
-                    <button type="submit" name="login_btn" class="btn btn-primary btn-full">Se connecter</button>
-                </form>
-               
-                <form method="POST" id="register-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="register-name">Nom complet</label>
-                        <input type="text" name="name" id="register-name" required placeholder="Marie Dupont">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-email">Email</label>
-                        <input type="email" name="email" id="register-email" required placeholder="vous@exemple.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-password">Mot de passe</label>
-                        <input type="password" name="password" id="register-password" required placeholder="Min. 8 caractères">
-                    </div>
-                    <button type="submit" name="register_btn" class="btn btn-primary btn-full">Créer mon compte</button>
-                </form>
+            <!-- Hero (same as other pages) -->
+            <section class="hero">
+                <h1>RÉSERVEZ VOTRE DISPOSITIF</h1>
+                <p>Choisissez une semaine disponible pour emprunter la montre de diagnostic.</p>
             </section>
+           
+            <!-- Auth removed: reservation page is reservation-only; use /pages/reservation/login.php to authenticate -->
 
              <!-- <section class="calendar-section">
                 <h2>Disponibilités</h2>
@@ -352,39 +279,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <script>
-        // Gestion des onglets connexion/inscription
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById(tab.dataset.tab + '-form').classList.add('active');
-            });
-        });
-
-        // // Sélection de semaine
-        // document.querySelectorAll('.day.available.week-start').forEach(day => {
-        //     day.addEventListener('click', () => {
-        //         document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-        //         const weekStart = day.dataset.week;
-                
-        //         // On injecte la date dans l'input caché du formulaire
-        //         document.getElementById('hidden-start-date').value = weekStart;
-                
-        //         let current = day;
-        //         for (let i = 0; i < 7 && current; i++) {
-        //             current.classList.add('selected');
-        //             current = current.nextElementSibling;
-        //         }
-        //         document.getElementById('selected-period').textContent = weekStart + ' → 7 jours';
-        //         document.getElementById('reservation-summary').style.display = 'block';
-        //     });
-        // });
-
-
         let dateDebutSelectionnee = "";
 
-document.querySelectorAll('.day.available.week-start').forEach(day => {
+        document.querySelectorAll('.day.available.week-start').forEach(day => {
     day.addEventListener('click', () => {
         // Réinitialiser toutes les sélections précédentes
         document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));

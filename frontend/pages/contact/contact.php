@@ -16,7 +16,7 @@
     <main>
         <section class="page-hero">
             <h1>Nous Contacter</h1>
-            <p>Base de formulaire (aucun envoi).</p>
+            <p>Besoin d'informations ou avez-vous des questions ? N'hésitez pas à nous contacter !</p>
         </section>
 
         <section class="contact-container">

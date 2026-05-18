@@ -1,5 +1,5 @@
-<!DOCTYPE php>
-<php lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,23 +42,6 @@
         La vitesse angulaire et l'inclinaison : pour définir la posture.<br>
         Le temps : pour mesurer la durée continue de l'effort physique.</p>
     </div>
-</section>
-
-		<section id="equipe" class="content-section text-center">
-			<h2>L'Équipe</h2>
-			<p>Nous sommes étudiants en filière Système Embarqué, Automatisation et Capteurs (SEA) à Polytech Annecy-Chambéry.</p>
-			<ul class="team-list">
-				<li>KODAD Amani</li>
-				<li>AKOTEGNON Anne-Marie</li>
-				<li>MENO Viviane</li>
-				<li>COURRET-BONNEFOND Malo</li>
-			</ul>
-		</section>
-
-		<section id="inscription" class="content-section text-center">
-			<h2>Réserver la montre</h2>
-			<p>Intéressé(e) par une démonstration ? Écrivez-nous et nous reviendrons vers vous rapidement.</p>
-			<a href="mailto:contact@polytech-annecy.fr" class="btn-cta">Nous contacter</a>
 		</section>
 	</main>
 
@@ -69,4 +52,4 @@
 	<?php include __DIR__ . '/../../layouts/footer/footer.php'; ?>
 
 </body>
-</php>
+</html>
