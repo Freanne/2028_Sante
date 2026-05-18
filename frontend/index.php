@@ -1,5 +1,5 @@
-<!DOCTYPE php>
-<php lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,32 +26,22 @@
 		</section>
 
 		<section id="explications" class="grid-section">
-			<div class="card blue-card">
-				<h3>Le Contexte</h3>
-				<p>La sédentarité est aujourd’hui un problème majeur de santé publique. Le temps passé assis ou inactif augmente. Elle ne doit pas être confondue avec le manque d’activité physique : on peut être sportif régulier tout en restant sédentaire de nombreuses heures.</p>
-			</div>
+    <div class="card blue-card">
+        <h3>Le Contexte</h3>
+        <p>La sédentarité est aujourd’hui un problème majeur de santé publique. Le temps passé assis ou inactif augmente. Elle ne doit pas être confondue avec le manque d’activité physique : on peut être sportif régulier tout en restant sédentaire de nombreuses heures.</p>
+    </div>
 
-			<div class="card green-card">
-				<h3>Le MET, c'est quoi ?</h3>
-				<p>Par définition, 1 MET correspond à une consommation de 3,5 ml d'oxygène par kg et par minute. Notre algorithme utilise la régression linéaire sur la magnitude (VM) des axes X, Y, Z pour traduire vos mouvements en METs (ex: &lt; 100 counts = Sédentaire).</p>
-			</div>
-		</section>
-
-		<section id="equipe" class="content-section text-center">
-			<h2>L'Équipe</h2>
-			<p>Nous sommes étudiants en filière Système Embarqué, Automatisation et Capteurs (SEA) à Polytech Annecy-Chambéry.</p>
-			<ul class="team-list">
-				<li>KODAD Amani</li>
-				<li>AKOTEGNON Anne-Marie</li>
-				<li>MENO Viviane</li>
-				<li>COURRET-BONNEFOND Malo</li>
-			</ul>
-		</section>
-
-		<section id="inscription" class="content-section text-center">
-			<h2>Réserver la montre</h2>
-			<p>Intéressé(e) par une démonstration ? Écrivez-nous et nous reviendrons vers vous rapidement.</p>
-			<a href="mailto:contact@polytech-annecy.fr" class="btn-cta">Nous contacter</a>
+    <div class="card green-card">
+        <h3>Le MET, c'est quoi ?</h3>
+        <p>Le MET est l'unité de mesure de l'intensité de notre dépense énergétique :<br><br>
+        Sédentarité : ≤ 1,5 MET<br>
+        Activité légère : de 1,5 à 3 METs<br>
+        Activité intense : > 6 METs<br><br>
+        Données nécessaires à sa détermination :<br><br>
+        L'accélération sur 3 axes : pour évaluer l'intensité du mouvement.<br>
+        La vitesse angulaire et l'inclinaison : pour définir la posture.<br>
+        Le temps : pour mesurer la durée continue de l'effort physique.</p>
+    </div>
 		</section>
 	</main>
 
@@ -62,4 +52,4 @@
 	<?php include __DIR__ . '/../../layouts/footer/footer.php'; ?>
 
 </body>
-</php>
+</html>

@@ -1,82 +1,44 @@
 
-<!DOCTYPE php>
-<php lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="santee.css">
-    <link rel="stylesheet" href="../../assets/styles/main.css">
-	<link rel="stylesheet" href="../../layouts/header/header.css">
-	<link rel="stylesheet" href="../../layouts/footer/footer.css">
-	<link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/pages/reservation/reservation.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/pages/reservation/confirmation.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/assets/styles/main.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/header/header.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/footer/footer.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/pages/home/home.css">
 </head>
-<body>
+<body class="reservation-body">
 
 <?php include __DIR__ . '/../../layouts/header/header.php'; ?>
+    <section class="hero">
+        <h1>CONNECTEZ-VOUS À VOTRE SANTÉ</h1>
+        <p>Un objet connecté innovant développé par les étudiants de Polytech pour évaluer et améliorer vos habitudes de vie.</p>
+    </section>
     <?php
-session_start();
+    // Temporary: enable error display to surface issues (remove on production)
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-$conn = mysqli_connect('localhost', 'root', '', '2028_sante');
+    // session is started in the header include; do not call session_start() again here
 
-if (!$conn) {
-    die("Erreur de connexion : " . mysqli_connect_error());
-}
+    $conn = mysqli_connect('localhost', 'root', '', '2028_sante');
 
-mysqli_set_charset($conn, "utf8mb4");
-
-$msg = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // CAS INSCRIPTION
-    if (isset($_POST['register_btn'])) {
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-        $checkEmail = mysqli_query($conn, "SELECT id FROM users WHERE email = '$email'");
-        
-        if (mysqli_num_rows($checkEmail) > 0) {
-            $msg = "<p style='color:red; text-align:center;'>Cet email est déjà utilisé.</p>";
-        } else {
-            $sql = "INSERT INTO users (full_name, email, password_hash) VALUES (?, ?, ?)";
-            $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $password);
-            
-            if (mysqli_stmt_execute($stmt)) {
-                $msg = "<p style='color:green; text-align:center;'>Compte créé ! Connectez-vous.</p>";
-            } else {
-                $msg = "<p style='color:red; text-align:center;'>Erreur SQL : " . mysqli_error($conn) . "</p>";
-            }
-            mysqli_stmt_close($stmt);
-        }
+    if (!$conn) {
+        die("Erreur de connexion : " . mysqli_connect_error());
     }
 
-    // CAS CONNEXION
-    if (isset($_POST['login_btn'])) {
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = $_POST['password'];
+    mysqli_set_charset($conn, "utf8mb4");
 
-        $sql = "SELECT * FROM users WHERE email = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $user = mysqli_fetch_assoc($result);
+    $msg = "";
 
-        if ($user && password_verify($password, $user['password_hash'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['full_name'];
-            $msg = "<p style='color:green; text-align:center;'>Bienvenue " . htmlspecialchars($user['full_name']) . " !</p>";
-        } else {
-            $msg = "<p style='color:red; text-align:center;'>Identifiants invalides.</p>";
-        }
-        mysqli_stmt_close($stmt);
-    }
-
-    // CAS CONFIRMATION DE RÉSERVATION
-    if (isset($_POST['confirm_booking'])) {
+// CAS CONFIRMATION DE RÉSERVATION
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
         if (!isset($_SESSION['user_id'])) {
             $msg = "<p style='color:red; text-align:center;'>Erreur : Vous devez être connecté pour réserver.</p>";
         } else {
@@ -118,48 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-}
 ?>
 
     <main class="reservation-page">
         <div class="reservation-container">
+
+            <!-- Hero moved above the reservation container to match other pages -->
            
-            <section class="auth-section">
-                <div class="tabs">
-                    <button class="tab active" data-tab="login">Connexion</button>
-                    <button class="tab" data-tab="register">Inscription</button>
-                </div>
-
-                <?= $msg; // Affichage des messages ?>
-
-                <form method="POST" id="login-form" class="auth-form active">
-                    <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" name="email" id="login-email" required placeholder="vous@gmail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Mot de passe</label>
-                        <input type="password" name="password" id="login-password" required placeholder="••••••••">
-                    </div>
-                    <button type="submit" name="login_btn" class="btn btn-primary btn-full">Se connecter</button>
-                </form>
-               
-                <form method="POST" id="register-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="register-name">Nom complet</label>
-                        <input type="text" name="name" id="register-name" required placeholder="Marie Dupont">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-email">Email</label>
-                        <input type="email" name="email" id="register-email" required placeholder="vous@exemple.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-password">Mot de passe</label>
-                        <input type="password" name="password" id="register-password" required placeholder="Min. 8 caractères">
-                    </div>
-                    <button type="submit" name="register_btn" class="btn btn-primary btn-full">Créer mon compte</button>
-                </form>
-            </section>
+            <!-- Auth removed: reservation page is reservation-only; use /pages/reservation/login.php to authenticate -->
 
              <!-- <section class="calendar-section">
                 <h2>Disponibilités</h2>
@@ -242,6 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <section class="calendar-section">
     <h2>Disponibilités</h2>
     <p class="calendar-subtitle">Sélectionnez votre semaine de prêt (7 jours à partir du lundi)</p>
+            <div class="calendar-wrapper">
     
     <?php
     // 1. Détection dynamique du mois et de l'année via l'URL (par défaut : mois et année actuels)
@@ -298,11 +227,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="?month=<?= $next_month ?>&year=<?= $next_year ?>" class="btn btn-icon" id="next-month">→</a>
     </div>
 
-    <div class="calendar">
+        <div class="calendar">
         <div class="calendar-header">
             <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
         </div>
-        
+
         <div class="calendar-grid">
             <?php
             // Cases vides pour le début du mois
@@ -336,6 +265,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <span class="legend-item"><span class="dot reserved"></span> Réservé</span>
         <span class="legend-item"><span class="dot selected"></span> Sélectionné</span>
     </div>
+    </div>
 
     <div class="reservation-summary" id="reservation-summary" style="display: none;">
         <h3>Votre réservation</h3>
@@ -352,59 +282,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <script>
-        // Gestion des onglets connexion/inscription
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById(tab.dataset.tab + '-form').classList.add('active');
+        // When the user clicks any available day, compute the Monday (week-start) that contains that day,
+        // select the 7-day range visually and show the reservation summary with the confirmation button.
+        document.querySelectorAll('.day.available').forEach(day => {
+            day.addEventListener('click', () => {
+                // clear previous selections
+                document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+
+                const clickedDateStr = day.dataset.week; // in YYYY-MM-DD
+                if (!clickedDateStr) return;
+
+                // parse as local date
+                const parts = clickedDateStr.split('-');
+                const clicked = new Date(parts[0], parseInt(parts[1], 10) - 1, parts[2]);
+                const isoDay = clicked.getDay() === 0 ? 7 : clicked.getDay(); // 1=Mon .. 7=Sun
+                const diffToMonday = isoDay - 1; // 0 if Monday
+
+                const monday = new Date(clicked);
+                monday.setDate(clicked.getDate() - diffToMonday);
+
+                const yyyy = monday.getFullYear();
+                const mm = String(monday.getMonth() + 1).padStart(2, '0');
+                const dd = String(monday.getDate()).padStart(2, '0');
+                const weekStart = `${yyyy}-${mm}-${dd}`;
+
+                // set hidden input value
+                const hidden = document.getElementById('hidden-start-date');
+                if (hidden) hidden.value = weekStart;
+
+                // find the start element (may be in previous month)
+                let startElem = document.querySelector('.calendar-grid .day[data-week="' + weekStart + '"]');
+                if (!startElem) {
+                    startElem = Array.from(document.querySelectorAll('.day')).find(d => d.dataset && d.dataset.week === weekStart);
+                }
+
+                // visually mark 7 days starting from startElem
+                let current = startElem;
+                for (let i = 0; i < 7; i++) {
+                    if (current && current.classList && current.classList.contains('day') && !current.classList.contains('other-month')) {
+                        current.classList.add('selected');
+                    }
+                    current = current ? current.nextElementSibling : null;
+                }
+
+                const periodEl = document.getElementById('selected-period');
+                if (periodEl) periodEl.textContent = weekStart + ' → 7 jours';
+
+                const summary = document.getElementById('reservation-summary');
+                if (summary) {
+                    summary.classList.add('visible');
+                    summary.style.display = 'block';
+                }
             });
         });
-
-        // // Sélection de semaine
-        // document.querySelectorAll('.day.available.week-start').forEach(day => {
-        //     day.addEventListener('click', () => {
-        //         document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-        //         const weekStart = day.dataset.week;
-                
-        //         // On injecte la date dans l'input caché du formulaire
-        //         document.getElementById('hidden-start-date').value = weekStart;
-                
-        //         let current = day;
-        //         for (let i = 0; i < 7 && current; i++) {
-        //             current.classList.add('selected');
-        //             current = current.nextElementSibling;
-        //         }
-        //         document.getElementById('selected-period').textContent = weekStart + ' → 7 jours';
-        //         document.getElementById('reservation-summary').style.display = 'block';
-        //     });
-        // });
-
-
-        let dateDebutSelectionnee = "";
-
-document.querySelectorAll('.day.available.week-start').forEach(day => {
-    day.addEventListener('click', () => {
-        // Réinitialiser toutes les sélections précédentes
-        document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-        
-        const weekStart = day.dataset.week;
-        document.getElementById('hidden-start-date').value = weekStart;
-        
-        // Sélectionner visuellement les 7 jours de la semaine de prêt
-        let current = day;
-        for (let i = 0; i < 7; i++) {
-            if (current && current.classList.contains('day') && !current.classList.contains('other-month')) {
-                current.classList.add('selected');
-                current = current.nextElementSibling;
-            }
-        }
-        
-        document.getElementById('selected-period').textContent = weekStart + ' → 7 jours';
-        document.getElementById('reservation-summary').style.display = 'block';
-    });
-});
     </script>
 </body>
 </html>

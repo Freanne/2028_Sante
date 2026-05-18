@@ -60,14 +60,5 @@ PROJET_2028_SANTE/
                 ├── reset_password/
                 │   ├── reset_password.html
                 │   └── reset_password.css
-                └── espace_sponsor/         # Module testeur
-                        ├── data/               # Saisie des scores (ex-entry)
-                        │   ├── data.html
-                        │   └── data.css
-                        ├── monitoring/
-                        │   ├── monitoring.html
-                        │   └── monitoring.css
-                        └── feedback/
-                                ├── feedback.html
-                                └── feedback.css
+                
 ```
