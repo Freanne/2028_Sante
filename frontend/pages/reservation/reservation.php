@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/pages/reservation/reservation.css">
+    <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/pages/reservation/confirmation.css">
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/assets/styles/main.css">
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/header/header.css">
     <link rel="stylesheet" href="/APP2028/2028_Sante/frontend/layouts/footer/footer.css">
@@ -281,29 +282,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
     </main>
 
     <script>
-        let dateDebutSelectionnee = "";
+        // When the user clicks any available day, compute the Monday (week-start) that contains that day,
+        // select the 7-day range visually and show the reservation summary with the confirmation button.
+        document.querySelectorAll('.day.available').forEach(day => {
+            day.addEventListener('click', () => {
+                // clear previous selections
+                document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
 
-        document.querySelectorAll('.day.available.week-start').forEach(day => {
-    day.addEventListener('click', () => {
-        // Réinitialiser toutes les sélections précédentes
-        document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-        
-        const weekStart = day.dataset.week;
-        document.getElementById('hidden-start-date').value = weekStart;
-        
-        // Sélectionner visuellement les 7 jours de la semaine de prêt
-        let current = day;
-        for (let i = 0; i < 7; i++) {
-            if (current && current.classList.contains('day') && !current.classList.contains('other-month')) {
-                current.classList.add('selected');
-                current = current.nextElementSibling;
-            }
-        }
-        
-        document.getElementById('selected-period').textContent = weekStart + ' → 7 jours';
-        document.getElementById('reservation-summary').style.display = 'block';
-    });
-});
+                const clickedDateStr = day.dataset.week; // in YYYY-MM-DD
+                if (!clickedDateStr) return;
+
+                // parse as local date
+                const parts = clickedDateStr.split('-');
+                const clicked = new Date(parts[0], parseInt(parts[1], 10) - 1, parts[2]);
+                const isoDay = clicked.getDay() === 0 ? 7 : clicked.getDay(); // 1=Mon .. 7=Sun
+                const diffToMonday = isoDay - 1; // 0 if Monday
+
+                const monday = new Date(clicked);
+                monday.setDate(clicked.getDate() - diffToMonday);
+
+                const yyyy = monday.getFullYear();
+                const mm = String(monday.getMonth() + 1).padStart(2, '0');
+                const dd = String(monday.getDate()).padStart(2, '0');
+                const weekStart = `${yyyy}-${mm}-${dd}`;
+
+                // set hidden input value
+                const hidden = document.getElementById('hidden-start-date');
+                if (hidden) hidden.value = weekStart;
+
+                // find the start element (may be in previous month)
+                let startElem = document.querySelector('.calendar-grid .day[data-week="' + weekStart + '"]');
+                if (!startElem) {
+                    startElem = Array.from(document.querySelectorAll('.day')).find(d => d.dataset && d.dataset.week === weekStart);
+                }
+
+                // visually mark 7 days starting from startElem
+                let current = startElem;
+                for (let i = 0; i < 7; i++) {
+                    if (current && current.classList && current.classList.contains('day') && !current.classList.contains('other-month')) {
+                        current.classList.add('selected');
+                    }
+                    current = current ? current.nextElementSibling : null;
+                }
+
+                const periodEl = document.getElementById('selected-period');
+                if (periodEl) periodEl.textContent = weekStart + ' → 7 jours';
+
+                const summary = document.getElementById('reservation-summary');
+                if (summary) {
+                    summary.classList.add('visible');
+                    summary.style.display = 'block';
+                }
+            });
+        });
     </script>
 </body>
 </html>
